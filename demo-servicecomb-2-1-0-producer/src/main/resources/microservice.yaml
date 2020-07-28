@@ -1,0 +1,47 @@
+APPLICATION_ID: TakeAway
+
+service_description:
+  name: provider
+  version: 0.0.3
+
+servicecomb:
+  service:
+    #Specifies the service center IP address.
+    registry:
+      address: http://127.0.0.1:30100
+  loadbalance:
+    isolation:
+      enabled: true
+    retryEnabled: true
+    retryOnNext: 1
+    retryOnSame: 0
+  flowcontrol:
+    Provider:
+      qps:
+        global:
+          limit: 750
+  rest:
+    address: 0.0.0.0:9797
+    server:
+      thread-count: 4
+      connection-limit: 2048
+      connection:
+        idleTimeoutInSeconds: 7405
+    client:
+      thread-count: 4
+      connection:
+        pool-per-thread: 1
+        maxPoolSize: 50
+        idleTimeoutInSeconds: 7400
+        keepAlive: true
+  request:
+    timeout: 30000
+#########SSL options
+#ssl.protocols: TLSv1.2
+#ssl.authPeer: false
+##ssl.trustStore: trust.jks
+##ssl.trustStoreType: JKS
+#ssl.checkCN.host: false
+#ssl.keyStore: test.p12
+#ssl.keyStoreType: PKCS12
+#ssl.sslCustomClass: com.github.shoothzj.servicecomb.demo.service.DemoSSLCustom
