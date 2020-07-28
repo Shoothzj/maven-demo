@@ -2,12 +2,13 @@ APPLICATION_ID: TakeAway
 
 service_description:
   name: provider
-  version: 0.0.3
+  version: 0.0.11
 
 servicecomb:
   service:
     #Specifies the service center IP address.
     registry:
+      enabled: true
       address: http://127.0.0.1:30100
   loadbalance:
     isolation:

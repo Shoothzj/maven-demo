@@ -1,0 +1,48 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "swagger definition for com.github.shoothzj.demo.serivcecomb210.rpc.TakeAwayImpl"
+  x-java-interface: "com.github.shoothzj.demo.serivcecomb210.rpc.ITakeAway"
+basePath: "/TakeAwayImpl"
+schemes:
+  - "http"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+x-imports: "javax.validation.Valid"
+paths:
+  /doRpc:
+    post:
+      operationId: "doRpc"
+      parameters:
+        - in: "query"
+          name: "regionEnum"
+          required: false
+          type: "string"
+          enum:
+            - CN
+            - US
+        - in: "body"
+          name: "takeAwayRequest"
+          required: true
+          x-annotations:
+            - "@Valid"
+          schema:
+            $ref: "#/definitions/TakeAwayRequest"
+      responses:
+        "200":
+          description: "response of 200"
+definitions:
+  TakeAwayRequest:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      memberEnum:
+        type: "string"
+        enum:
+          - "M1"
+          - "M2"
+        x-java-class: "com.github.shoothzj.demo.serivcecomb210.module.MemberEnum"
+    x-java-class: "com.github.shoothzj.demo.serivcecomb210.module.TakeAwayRequest"
