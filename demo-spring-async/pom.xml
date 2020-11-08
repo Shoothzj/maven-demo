@@ -9,13 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>demo-file-config</artifactId>
+    <artifactId>demo-spring-async</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>com.aliyun.openservices</groupId>
-            <artifactId>aliyun-cms</artifactId>
-            <version>0.2.4</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 

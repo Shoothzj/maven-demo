@@ -4,14 +4,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.shoothzj</groupId>
     <artifactId>maven-demo</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>demo-file-config</module>
         <module>demo-servicecomb-2-1-0-producer</module>
+        <module>demo-grammar</module>
+        <module>demo-spark</module>
+        <module>demo-nio</module>
+        <module>demo-spring-async</module>
     </modules>
+
+    <parent>
+        <artifactId>java-dependency</artifactId>
+        <groupId>com.github.shoothzj</groupId>
+        <version>3.0.9.RELEASE</version>
+    </parent>
 
     <build>
         <plugins>
@@ -26,6 +35,26 @@
         </plugins>
     </build>
 
+    <dependencies>
+        <!-- log -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 
 </project>
