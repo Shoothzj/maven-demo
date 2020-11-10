@@ -14,6 +14,8 @@
         <module>demo-spark</module>
         <module>demo-nio</module>
         <module>demo-spring-async</module>
+        <module>demo-zookeeper</module>
+        <module>demo-netty</module>
     </modules>
 
     <parent>
@@ -36,6 +38,11 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>com.github.shoothzj</groupId>
+            <artifactId>java-tool</artifactId>
+            <version>3.0.29.RELEASE</version>
+        </dependency>
         <!-- log -->
         <dependency>
             <groupId>org.slf4j</groupId>
