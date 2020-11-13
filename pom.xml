@@ -16,12 +16,14 @@
         <module>demo-spring-async</module>
         <module>demo-zookeeper</module>
         <module>demo-netty</module>
+        <module>demo-protobuf</module>
+        <module>demo-bookkeeper</module>
     </modules>
 
     <parent>
         <artifactId>java-dependency</artifactId>
         <groupId>com.github.shoothzj</groupId>
-        <version>3.0.9.RELEASE</version>
+        <version>3.0.10.RELEASE</version>
     </parent>
 
     <build>
@@ -41,7 +43,7 @@
         <dependency>
             <groupId>com.github.shoothzj</groupId>
             <artifactId>java-tool</artifactId>
-            <version>3.0.29.RELEASE</version>
+            <version>3.0.31.RELEASE</version>
         </dependency>
         <!-- log -->
         <dependency>
@@ -58,8 +60,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13</version>
-            <scope>test</scope>
+            <version>4.13.1</version>
         </dependency>
     </dependencies>
 

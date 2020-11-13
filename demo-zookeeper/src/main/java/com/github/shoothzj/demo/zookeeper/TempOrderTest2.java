@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * @author hezhangjian
  */
 @Slf4j
-public class TempOrderTest {
+public class TempOrderTest2 {
 
     public static void main(String[] args) throws Exception {
         LogUtil.configureLog();

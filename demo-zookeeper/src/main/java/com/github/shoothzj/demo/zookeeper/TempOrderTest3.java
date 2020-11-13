@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * @author hezhangjian
  */
 @Slf4j
-public class TempOrderTest {
+public class TempOrderTest3 {
 
     public static void main(String[] args) throws Exception {
         LogUtil.configureLog();
@@ -23,7 +23,7 @@ public class TempOrderTest {
         CuratorFramework client = CuratorFrameworkFactory.builder().connectString("127.0.0.1:2181")
                 .sessionTimeoutMs(10000).retryPolicy(retryPolicy).build();
         client.start();
-        String path = client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath("/temp/seq", "World".getBytes());
+        String path = client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL_SEQUENTIAL).forPath("/temp/seqX", "World".getBytes());
         log.info("path is [{}]", path);
         CommonUtil.sleep(TimeUnit.HOURS, 1);
     }
