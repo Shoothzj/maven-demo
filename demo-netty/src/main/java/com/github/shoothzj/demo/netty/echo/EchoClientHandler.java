@@ -1,6 +1,5 @@
 package com.github.shoothzj.demo.netty.echo;
 
-import com.github.shoothzj.demo.netty.NettyConstant;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
@@ -16,7 +15,7 @@ public class EchoClientHandler extends ChannelInboundHandlerAdapter {
     private final ByteBuf firstMessage;
 
     public EchoClientHandler() {
-        firstMessage = Unpooled.buffer(NettyConstant.ECHO_SIZE);
+        firstMessage = Unpooled.buffer(EchoConstant.ECHO_SIZE);
         for (int i = 0; i < firstMessage.capacity(); i++) {
             firstMessage.writeByte(i);
         }

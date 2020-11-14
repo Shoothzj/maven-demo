@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package demo.netty;
+
+option java_package = "com.github.shoothzj.demo.netty.protobuf.module";
+option java_outer_classname = "ProtoBufModule";
+
+message Request {
+  required string first_name = 1;
+  required string last_name = 2;
+}
+
+message Response {
+  required int32 status = 1;
+}

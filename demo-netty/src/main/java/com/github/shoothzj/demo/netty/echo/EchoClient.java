@@ -1,6 +1,5 @@
 package com.github.shoothzj.demo.netty.echo;
 
-import com.github.shoothzj.demo.netty.NettyConstant;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -22,7 +21,7 @@ public class EchoClient {
 
     public static void main(String[] args) throws Exception {
         final SslContext sslCtx;
-        if (NettyConstant.ECHO_SSL) {
+        if (EchoConstant.ECHO_SSL) {
             sslCtx = SslContextBuilder.forClient()
                     .trustManager(InsecureTrustManagerFactory.INSTANCE).build();
         } else {
@@ -40,13 +39,13 @@ public class EchoClient {
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             ChannelPipeline p = socketChannel.pipeline();
                             if (sslCtx != null) {
-                                p.addLast(sslCtx.newHandler(socketChannel.alloc(), NettyConstant.ECHO_HOST, NettyConstant.ECHO_PORT));
+                                p.addLast(sslCtx.newHandler(socketChannel.alloc(), EchoConstant.ECHO_HOST, EchoConstant.ECHO_PORT));
                             }
                             //p.addLast(new LoggingHandler(LogLevel.INFO));
                             p.addLast(new EchoClientHandler());
                         }
                     });
-            ChannelFuture channelFuture = bootstrap.connect(NettyConstant.ECHO_HOST, NettyConstant.ECHO_PORT).sync();
+            ChannelFuture channelFuture = bootstrap.connect(EchoConstant.ECHO_HOST, EchoConstant.ECHO_PORT).sync();
             channelFuture.channel().closeFuture().sync();
         } finally {
             group.shutdownGracefully();

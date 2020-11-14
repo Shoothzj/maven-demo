@@ -1,6 +1,5 @@
 package com.github.shoothzj.demo.netty.echo;
 
-import com.github.shoothzj.demo.netty.NettyConstant;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -26,7 +25,7 @@ public class EchoServer {
     public static void main(String[] args) throws Exception {
         // Configure SSL.
         final SslContext sslCtx;
-        if (NettyConstant.ECHO_SSL) {
+        if (EchoConstant.ECHO_SSL) {
             SelfSignedCertificate ssc = new SelfSignedCertificate();
             sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey()).build();
         } else {
@@ -56,7 +55,7 @@ public class EchoServer {
                     });
 
             // Start the server.
-            ChannelFuture f = b.bind(NettyConstant.ECHO_PORT).sync();
+            ChannelFuture f = b.bind(EchoConstant.ECHO_PORT).sync();
 
             // Wait until the server socket is closed.
             f.channel().closeFuture().sync();

@@ -18,6 +18,8 @@
         <module>demo-netty</module>
         <module>demo-protobuf</module>
         <module>demo-bookkeeper</module>
+        <module>demo-jetty</module>
+        <module>demo-pulsar-simulate</module>
     </modules>
 
     <parent>

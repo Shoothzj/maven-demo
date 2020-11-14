@@ -1,4 +1,4 @@
-package com.github.shoothzj.demo.netty;
+package com.github.shoothzj.demo.netty.echo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author hezhangjian
  */
 @Slf4j
-public class NettyConstant {
+public class EchoConstant {
 
     public static final boolean ECHO_SSL = System.getProperty("ssl") != null;
 
