@@ -20,6 +20,11 @@
         <module>demo-bookkeeper</module>
         <module>demo-jetty</module>
         <module>demo-pulsar-simulate</module>
+        <module>demo-jackson</module>
+        <module>demo-okhttp</module>
+        <module>demo-redis</module>
+        <module>demo-mongo</module>
+        <module>demo-bean-convert</module>
     </modules>
 
     <parent>
