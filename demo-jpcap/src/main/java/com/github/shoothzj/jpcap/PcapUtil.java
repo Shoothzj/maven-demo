@@ -18,6 +18,8 @@ public class PcapUtil {
         final OperationSystem operationSystem = OSUtil.getOS();
         if (operationSystem.equals(OperationSystem.MAC)) {
             return "/Users/akka/OneDrive/抓包";
+        } else if (operationSystem.equals(OperationSystem.WINDOWS)) {
+            return "D:\\OneDrive\\抓包";
         }
         return "";
     }
