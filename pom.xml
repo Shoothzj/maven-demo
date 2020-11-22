@@ -27,6 +27,7 @@
         <module>demo-bean-convert</module>
         <module>demo-mariadb</module>
         <module>demo-trouble-shoot</module>
+        <module>demo-jpcap</module>
     </modules>
 
     <parent>
