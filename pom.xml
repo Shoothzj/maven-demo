@@ -25,6 +25,8 @@
         <module>demo-redis</module>
         <module>demo-mongo</module>
         <module>demo-bean-convert</module>
+        <module>demo-mariadb</module>
+        <module>demo-trouble-shoot</module>
     </modules>
 
     <parent>
