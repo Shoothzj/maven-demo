@@ -1,13 +1,18 @@
 package com.github.shoothzj.jpcap;
 
 import com.github.shoothzj.javatool.util.LogUtil;
+import com.github.shoothzj.jpcap.ex.PulsarDecodeException;
+import com.github.shoothzj.jpcap.util.PcapUtil;
+import com.github.shoothzj.jpcap.util.PulsarDecodeUtil;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.pkts.Pcap;
 import io.pkts.buffer.Buffer;
-import io.pkts.packet.Packet;
 import io.pkts.packet.TCPPacket;
 import io.pkts.protocol.Protocol;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pulsar.common.api.proto.PulsarApi;
+import org.apache.pulsar.common.util.protobuf.ByteBufCodedInputStream;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -35,21 +40,35 @@ public class PktsPulsarParse {
                     return true;
                 }
                 byte[] bufferArray = buffer.getArray();
-                byte[] bytes = Arrays.copyOfRange(bufferArray, 8, bufferArray.length);
+                byte[] bytes = Arrays.copyOfRange(bufferArray, 0, bufferArray.length);
                 // the first four bytes is length of protobuf
                 if (tcpPacket.getDestinationPort() == 6650) {
                     // This is client request to pulsar
-                    PulsarApi.BaseCommand baseCommand = PulsarApi.BaseCommand.parseFrom(bytes);
-                    log.info("buffer is [{}]", baseCommand);
+                    parse(bytes);
                 } else if (tcpPacket.getSourcePort() == 6650) {
-                    PulsarApi.BaseCommand baseCommand = PulsarApi.BaseCommand.parseFrom(bytes);
-                    log.info("buffer is [{}]", baseCommand);
+                    parse(bytes);
                 }
+            } catch (PulsarDecodeException pulsarDecodeException) {
+                log.error("pulsar decode exception, exception is ", pulsarDecodeException);
+                return false;
             } catch (Exception e) {
                 log.error("parse error, exception is ", e);
             }
             return true;
         });
+    }
+
+    private static void parse(byte[] javaBuffer) throws IOException {
+        ByteBuf buffer = Unpooled.copiedBuffer(javaBuffer);
+        buffer.readInt();
+        int cmdSize = (int) buffer.readUnsignedInt();
+        buffer.writerIndex();
+        final int writeIndex = buffer.readerIndex() + cmdSize;
+        buffer.writerIndex(writeIndex);
+        ByteBufCodedInputStream cmdInputStream = ByteBufCodedInputStream.get(buffer);
+        final PulsarApi.BaseCommand.Builder cmdBuilder = PulsarApi.BaseCommand.newBuilder();
+        PulsarApi.BaseCommand baseCommand = cmdBuilder.mergeFrom(cmdInputStream, null).build();
+        PulsarDecodeUtil.parsePulsarCommand(baseCommand);
     }
 
 }

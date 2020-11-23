@@ -1,4 +1,4 @@
-package com.github.shoothzj.jpcap;
+package com.github.shoothzj.jpcap.util;
 
 import com.github.shoothzj.javatool.module.OperationSystem;
 import com.github.shoothzj.javatool.util.OSUtil;
