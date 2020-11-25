@@ -2,6 +2,7 @@ package com.github.shoothzj.jpcap;
 
 import com.github.shoothzj.javatool.util.LogUtil;
 import com.github.shoothzj.jpcap.ex.PulsarDecodeException;
+import com.github.shoothzj.jpcap.pulsar.IPulsarCallback;
 import com.github.shoothzj.jpcap.util.PcapUtil;
 import com.github.shoothzj.jpcap.util.PulsarDecodeUtil;
 import io.netty.buffer.ByteBuf;
@@ -62,13 +63,14 @@ public class PktsPulsarParse {
         ByteBuf buffer = Unpooled.copiedBuffer(javaBuffer);
         buffer.readInt();
         int cmdSize = (int) buffer.readUnsignedInt();
-        buffer.writerIndex();
-        final int writeIndex = buffer.readerIndex() + cmdSize;
-        buffer.writerIndex(writeIndex);
+        final int writeIndex = buffer.writerIndex();
+        buffer.writerIndex(buffer.readerIndex() + cmdSize);
         ByteBufCodedInputStream cmdInputStream = ByteBufCodedInputStream.get(buffer);
         final PulsarApi.BaseCommand.Builder cmdBuilder = PulsarApi.BaseCommand.newBuilder();
         PulsarApi.BaseCommand baseCommand = cmdBuilder.mergeFrom(cmdInputStream, null).build();
-        PulsarDecodeUtil.parsePulsarCommand(baseCommand);
+        buffer.writerIndex(writeIndex);
+        PulsarDecodeUtil.parsePulsarCommand(baseCommand, buffer, new IPulsarCallback() {
+        });
     }
 
 }
