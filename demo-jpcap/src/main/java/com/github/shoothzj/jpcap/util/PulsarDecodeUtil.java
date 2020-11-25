@@ -68,6 +68,30 @@ public class PulsarDecodeUtil {
                 final PulsarApi.CommandSuccess success = baseCommand.getSuccess();
                 pulsarCallback.onSuccess();
                 break;
+            case PING:
+                PulsarApi.CommandPing ping = baseCommand.getPing();
+                pulsarCallback.onPing();
+                break;
+            case PONG:
+                PulsarApi.CommandPong pong = baseCommand.getPong();
+                pulsarCallback.onPong();
+                break;
+            case SUBSCRIBE:
+                PulsarApi.CommandSubscribe subscribe = baseCommand.getSubscribe();
+                pulsarCallback.onSubscribe();
+                break;
+            case FLOW:
+                PulsarApi.CommandFlow flow = baseCommand.getFlow();
+                pulsarCallback.onFlow();
+                break;
+            case MESSAGE:
+                PulsarApi.CommandMessage message = baseCommand.getMessage();
+                pulsarCallback.onMessage();
+                break;
+            case CLOSE_CONSUMER:
+                PulsarApi.CommandCloseConsumer closeConsumer = baseCommand.getCloseConsumer();
+                pulsarCallback.onCloseConsumer();
+                break;
             default:
                 throw new PulsarDecodeException(String.format("not supported type %s", commandType));
         }

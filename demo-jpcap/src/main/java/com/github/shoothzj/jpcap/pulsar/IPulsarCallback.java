@@ -54,15 +54,39 @@ public interface IPulsarCallback {
     }
 
     default void onSendReceipt() {
-
+        log.info("send receipt");
     }
 
     default void onCloseProducer() {
-
+        log.info("close producer");
     }
 
     default void onSuccess() {
+        log.info("success");
+    }
 
+    default void onPing() {
+        log.info("ping");
+    }
+
+    default void onPong() {
+        log.info("pong");
+    }
+
+    default void onSubscribe() {
+        log.info("subscribe ");
+    }
+
+    default void onFlow() {
+        log.info("flow ");
+    }
+
+    default void onMessage() {
+        log.info("message ");
+    }
+
+    default void onCloseConsumer() {
+        log.info("close consumer");
     }
 
 }
