@@ -54,7 +54,7 @@ public class PulsarDecodeUtil {
                 pulsarCallback.onProducerResp(producerSuccess.getProducerName(), producerSuccess.getRequestId());
                 break;
             case SEND:
-                parseSend(baseCommand, buffer, pulsarCallback);
+                parseSend(baseCommand.getSend(), buffer, pulsarCallback);
                 break;
             case SEND_RECEIPT:
                 final PulsarApi.CommandSendReceipt sendReceipt = baseCommand.getSendReceipt();
@@ -85,21 +85,23 @@ public class PulsarDecodeUtil {
                 pulsarCallback.onFlow();
                 break;
             case MESSAGE:
-                PulsarApi.CommandMessage message = baseCommand.getMessage();
-                pulsarCallback.onMessage();
+                parseMessage(baseCommand.getMessage(), buffer, pulsarCallback);
                 break;
             case CLOSE_CONSUMER:
                 PulsarApi.CommandCloseConsumer closeConsumer = baseCommand.getCloseConsumer();
                 pulsarCallback.onCloseConsumer();
+                break;
+            case ACTIVE_CONSUMER_CHANGE:
+                final PulsarApi.CommandActiveConsumerChange consumerChange = baseCommand.getActiveConsumerChange();
+                pulsarCallback.onActiveConsumerChange();
                 break;
             default:
                 throw new PulsarDecodeException(String.format("not supported type %s", commandType));
         }
     }
 
-    private static void parseSend(PulsarApi.BaseCommand baseCommand, ByteBuf buffer, IPulsarCallback pulsarCallback) throws IOException {
+    private static void parseSend(PulsarApi.CommandSend commandSend, ByteBuf buffer, IPulsarCallback pulsarCallback) throws IOException {
         // This is send req, the body in rest
-        final PulsarApi.CommandSend commandSend = baseCommand.getSend();
         // store a buffer marking the content + headers
         ByteBuf headersAndPayload = buffer.markReaderIndex();
         final PulsarApi.MessageMetadata metadata = Commands.parseMessageMetadata(headersAndPayload);
@@ -111,6 +113,21 @@ public class PulsarDecodeUtil {
         int len1 = ((bytes[0] * 16 + bytes[1]) * 16 + bytes[2])*16 + bytes[3];
         final byte[] messageBytes = Arrays.copyOfRange(bytes, len1 + 4, bytes.length);
         pulsarCallback.onSend(metadata.getPartitionKey(), metadata.getPropertiesList(),new String(messageBytes));
+    }
+
+    private static void parseMessage(PulsarApi.CommandMessage commandMessage, ByteBuf buffer, IPulsarCallback pulsarCallback) throws IOException {
+        // This is send req, the body in rest
+        // store a buffer marking the content + headers
+        ByteBuf headersAndPayload = buffer.markReaderIndex();
+        final PulsarApi.MessageMetadata metadata = Commands.parseMessageMetadata(headersAndPayload);
+        final ByteBuf message = buffer.retain();
+        byte[] bytes = new byte[message.readableBytes()];
+        message.readBytes(bytes);
+
+        // read first four bytes
+        int len1 = ((bytes[0] * 16 + bytes[1]) * 16 + bytes[2])*16 + bytes[3];
+        final byte[] messageBytes = Arrays.copyOfRange(bytes, len1 + 4, bytes.length);
+        pulsarCallback.onMessage(metadata.getPartitionKey(), metadata.getPropertiesList(),new String(messageBytes));
     }
 
 }

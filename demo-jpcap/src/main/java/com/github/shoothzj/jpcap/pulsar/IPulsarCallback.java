@@ -65,12 +65,18 @@ public interface IPulsarCallback {
         log.info("success");
     }
 
+    /**
+     * Ping心跳
+     */
     default void onPing() {
-        log.info("ping");
+        log.debug("ping");
     }
 
+    /**
+     * Pong回复心跳
+     */
     default void onPong() {
-        log.info("pong");
+        log.debug("pong");
     }
 
     default void onSubscribe() {
@@ -81,12 +87,16 @@ public interface IPulsarCallback {
         log.info("flow ");
     }
 
-    default void onMessage() {
-        log.info("message ");
+    default void onMessage(String partitionKey, List<PulsarApi.KeyValue> propertiesList, String msg) {
+        log.info("message key is [{}], propertiesList is [{}] msg is [{}]", partitionKey, propertiesList, msg);
     }
 
     default void onCloseConsumer() {
         log.info("close consumer");
+    }
+
+    default void onActiveConsumerChange() {
+        log.info("active consumer change");
     }
 
 }
