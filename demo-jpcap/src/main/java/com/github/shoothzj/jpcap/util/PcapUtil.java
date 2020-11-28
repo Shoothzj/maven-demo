@@ -17,9 +17,9 @@ public class PcapUtil {
     public static String getPcapDirectory() {
         final OperationSystem operationSystem = OSUtil.getOS();
         if (operationSystem.equals(OperationSystem.MAC)) {
-            return "/Users/akka/OneDrive/抓包";
+            return "/Users/akka/OneDrive/pcap_capture";
         } else if (operationSystem.equals(OperationSystem.WINDOWS)) {
-            return "D:\\OneDrive\\抓包";
+            return "D:\\OneDrive\\抓包\\pcap_capture";
         }
         return "";
     }

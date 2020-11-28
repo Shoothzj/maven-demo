@@ -22,11 +22,11 @@ import java.util.Arrays;
  * @author hezhangjian
  */
 @Slf4j
-public class PktsPulsarParse {
+public class PktsPulsarParseTest {
 
     public static void main(String[] args) throws IOException {
         LogUtil.configureLog();
-        final String pcapPath = PcapUtil.getPcapPath("pulsar-producer-and-consumer-simple.pcap");
+        final String pcapPath = PcapUtil.getPcapPath("pulsar", "pulsar-producer-and-consumer-simple.pcap");
         final Pcap pcap = Pcap.openStream(pcapPath);
         pcap.loop(packet -> {
             try {
