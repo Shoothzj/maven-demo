@@ -1,6 +1,7 @@
 package com.github.shoothzj.jpcap;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.github.shoothzj.jpcap.filter.TcpFilter;
 import com.github.shoothzj.jpcap.print.TcpPrintEnum;
 import com.github.shoothzj.jpcap.util.SortedJacksonUtil;
 import io.pkts.buffer.Buffer;
@@ -20,9 +21,16 @@ public class PktsTcpParse extends PktsPacketParse {
 
     private Set<TcpPrintEnum> tcpPrintEnums;
 
+    private Set<TcpFilter> tcpFilters;
+
     public PktsTcpParse() {
         super();
         tcpPrintEnums = new HashSet<>();
+        tcpFilters = new HashSet<>();
+    }
+
+    public void tcpFilter(TcpFilter tcpFilter) {
+        tcpFilters.add(tcpFilter);
     }
 
     public void tcpPrintEnum(TcpPrintEnum tcpPrintEnum) {
@@ -32,7 +40,13 @@ public class PktsTcpParse extends PktsPacketParse {
     @Override
     protected void supplyParse(Packet packet) throws Exception {
         if (packet.hasProtocol(Protocol.TCP)) {
-            parseTcpPacket((TCPPacket) packet.getPacket(Protocol.TCP));
+            final TCPPacket tcpPacket = (TCPPacket) packet.getPacket(Protocol.TCP);
+            for (TcpFilter tcpFilter : tcpFilters) {
+                if (!tcpFilter.filter(tcpPacket)) {
+                    return;
+                }
+            }
+            parseTcpPacket(tcpPacket);
         }
     }
 

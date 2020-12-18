@@ -28,6 +28,11 @@
         <module>demo-mariadb</module>
         <module>demo-trouble-shoot</module>
         <module>demo-jpcap</module>
+        <module>demo-apollo</module>
+        <module>demo-pulsar</module>
+        <module>demo-bookkeeper-simulate</module>
+        <module>demo-iot-mqtt-broker</module>
+        <module>demo-mqtt-client</module>
     </modules>
 
     <parent>
