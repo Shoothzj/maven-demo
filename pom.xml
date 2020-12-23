@@ -33,6 +33,7 @@
         <module>demo-bookkeeper-simulate</module>
         <module>demo-iot-mqtt-broker</module>
         <module>demo-mqtt-client</module>
+        <module>demo-sentinel</module>
     </modules>
 
     <parent>
