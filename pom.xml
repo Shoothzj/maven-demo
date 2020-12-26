@@ -34,6 +34,8 @@
         <module>demo-iot-mqtt-broker</module>
         <module>demo-mqtt-client</module>
         <module>demo-sentinel</module>
+        <module>demo-netty-simulate</module>
+        <module>demo-mock</module>
     </modules>
 
     <parent>
