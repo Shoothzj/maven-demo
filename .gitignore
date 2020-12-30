@@ -18,6 +18,9 @@ gradle/**
 # mqtt client java
 *.lck
 
+# mvn shade plugin
+dependency-reduced-pom.xml
+
 # benchmark result
 benchmark/**
 

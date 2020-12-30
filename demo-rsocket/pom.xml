@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>demo-sentinel</artifactId>
+    <artifactId>demo-rsocket</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -17,12 +17,19 @@
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/com.alibaba.csp/sentinel-core -->
+        <!-- https://mvnrepository.com/artifact/io.rsocket/rsocket-core -->
         <dependency>
-            <groupId>com.alibaba.csp</groupId>
-            <artifactId>sentinel-core</artifactId>
-            <version>1.8.0</version>
+            <groupId>io.rsocket</groupId>
+            <artifactId>rsocket-core</artifactId>
+            <version>1.1.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.rsocket/rsocket-core -->
+        <dependency>
+            <groupId>io.rsocket</groupId>
+            <artifactId>rsocket-transport-netty</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+
     </dependencies>
 
 </project>

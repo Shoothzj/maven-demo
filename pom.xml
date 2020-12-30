@@ -36,7 +36,15 @@
         <module>demo-sentinel</module>
         <module>demo-netty-simulate</module>
         <module>demo-mock</module>
+        <module>demo-rsocket</module>
+        <module>demo-agent</module>
+        <module>demo-agent-test</module>
     </modules>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
 
     <parent>
         <artifactId>java-dependency</artifactId>
