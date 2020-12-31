@@ -20,6 +20,8 @@ public class TestController {
     /**
      * @param jobId
      * @param createJobReqDto
+     * https://docs.aws.amazon.com/iot/latest/apireference/API_CreateJob.html
+     * curl -X PUT -H 'Content-Type: application/json' 127.0.0.1:8080/jobs/111 -d '{"description":"description"}' -iv
      * @return
      */
     @PutMapping(path = "/jobs/{jobId}")
