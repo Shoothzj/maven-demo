@@ -39,6 +39,8 @@
         <module>demo-rsocket</module>
         <module>demo-agent</module>
         <module>demo-agent-test</module>
+        <module>demo-iot-device-manage</module>
+        <module>demo-aliyun</module>
     </modules>
 
     <properties>

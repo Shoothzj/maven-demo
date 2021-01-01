@@ -1,0 +1,22 @@
+server:
+  port: 8182
+spring:
+  datasource:
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+    url: jdbc:mysql://localhost:3306/ttbb
+    username: hzj
+    password: Mysql@123
+    sql-script-encoding: UTF-8
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: false
+        use_sql_comments: true
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true

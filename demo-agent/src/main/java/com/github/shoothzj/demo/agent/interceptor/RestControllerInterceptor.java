@@ -48,7 +48,11 @@ public class RestControllerInterceptor {
         final ObjectNode objectNode = AgentJacksonUtil.createObjectNode();
         objectNode.set("args", arrayNode);
         ResponseEntity responseEntity = (ResponseEntity) result;
-        AgentUtil.info("status code is [{}] args is [{}] result is [{}]", responseEntity.getStatusCode(), objectNode, responseEntity.getBody());
+        if (thrown == null) {
+            AgentUtil.info("status code is [{}] args is [{}] result is [{}]", responseEntity.getStatusCode(), objectNode, responseEntity.getBody());
+        } else {
+            AgentUtil.info("status code is exception is ", thrown);
+        }
     }
 
 
