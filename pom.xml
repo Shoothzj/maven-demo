@@ -41,6 +41,7 @@
         <module>demo-agent-test</module>
         <module>demo-iot-device-manage</module>
         <module>demo-aliyun</module>
+        <module>demo-iot-device-model</module>
     </modules>
 
     <properties>

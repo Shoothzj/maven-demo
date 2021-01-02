@@ -24,7 +24,6 @@ public class DeviceController {
      */
     @PostMapping(path = "/device-manage/register-device")
     public void registerDevice(@RequestBody RegisterDeviceReq registerDeviceReq) {
-//        log.info("register deivce");
         RegisterDevicePO registerDevicePO = new RegisterDevicePO();
         registerDevicePO.setDeviceName(UUID.randomUUID().toString());
         registerDevicePO.setDevEui(registerDeviceReq.getDevEui());
