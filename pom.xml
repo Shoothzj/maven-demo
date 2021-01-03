@@ -42,6 +42,7 @@
         <module>demo-iot-device-manage</module>
         <module>demo-aliyun</module>
         <module>demo-iot-device-model</module>
+        <module>demo-transmit-thread-local</module>
     </modules>
 
     <properties>
