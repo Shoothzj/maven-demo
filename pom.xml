@@ -43,6 +43,12 @@
         <module>demo-aliyun</module>
         <module>demo-iot-device-model</module>
         <module>demo-transmit-thread-local</module>
+        <module>demo-amqp</module>
+        <module>demo-concurrent</module>
+        <module>demo-prometheus</module>
+        <module>demo-http</module>
+        <module>demo-antlr</module>
+        <module>demo-basic</module>
     </modules>
 
     <properties>
