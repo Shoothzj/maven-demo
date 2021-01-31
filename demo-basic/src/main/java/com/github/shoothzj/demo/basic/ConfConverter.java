@@ -45,8 +45,8 @@ public class ConfConverter {
         });
     }
 
-    public void modify(Condition condition, Map<String, String> map) {
-        if (condition.judge()) {
+    public void modify(boolean condition, Map<String, String> map) {
+        if (condition) {
             map.forEach(new BiConsumer<String, String>() {
                 @Override
                 public void accept(String s, String s2) {
