@@ -1,6 +1,7 @@
 package com.github.shoothzj.demo.agent;
 
 import com.github.shoothzj.demo.agent.interceptor.RestControllerInterceptor;
+import com.github.shoothzj.demo.agent.interceptor.ZooKeeperWriteInterceptor;
 import net.bytebuddy.agent.builder.AgentBuilder;
 import net.bytebuddy.asm.Advice;
 import net.bytebuddy.description.type.TypeDescription;
@@ -36,6 +37,11 @@ public class AgentTransformer implements AgentBuilder.Transformer {
                                 .or(ElementMatchers.isAnnotatedWith(PutMapping.class))
                                 .or(ElementMatchers.isAnnotatedWith(DeleteMapping.class))
                                 .or(ElementMatchers.isAnnotatedWith(PatchMapping.class))));
+            }
+            if (typeDescription.getTypeName().equals("org.apache.zookeeper.server.PrepRequestProcessor")) {
+                final Advice advice = Advice.to(ZooKeeperWriteInterceptor.class);
+                return builder.visit(advice
+                        .on(ElementMatchers.named("pRequest2Txn")));
             }
         } catch (Exception e) {
             log.error("error is ", e);
