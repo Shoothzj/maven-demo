@@ -3,18 +3,32 @@ package com.github.shoothzj.demo.trouble.shoot;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.github.shoothzj.demo.trouble.shoot.module.ReadType;
+import com.github.shoothzj.demo.trouble.shoot.util.BkUtil;
 import com.github.shoothzj.javatool.util.CommonUtil;
 import com.github.shoothzj.javatool.util.LogUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.bookkeeper.client.LedgerMetadataBuilder;
+import org.apache.bookkeeper.client.api.LedgerMetadata;
 import org.apache.bookkeeper.mledger.proto.MLDataFormats;
+import org.apache.bookkeeper.net.BookieId;
+import org.apache.bookkeeper.proto.DataFormats;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.pulsar.broker.service.schema.SchemaStorageFormat;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+
+import static com.google.common.base.Preconditions.checkState;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 /**
  * @author hezhangjian
@@ -60,6 +74,10 @@ public class ZookeeperReader {
         log.info("=======end=======");
     }
 
+    public void readLedger(long ledgerId, byte[] bytes) throws Exception {
+        BkUtil.readLedger(ledgerId, bytes);
+    }
+
     public static void main(String[] args) throws Exception {
         LogUtil.configureLog();
         final ZookeeperReader reader = new ZookeeperReader();
@@ -69,15 +87,19 @@ public class ZookeeperReader {
         framework.start();
         CommonUtil.sleep(TimeUnit.SECONDS, 3);
         final byte[] bytes = framework.getData().forPath(System.getProperty("zookeeper.path"));
-        switch (reader.readType) {
-            case SCHEMA:
+        final String zookeeperType = System.getProperty("zookeeper.type");
+        switch (zookeeperType) {
+            case "SCHEMA":
                 reader.readSchema(bytes);
                 break;
-            case MANAGE_LEDGER:
+            case "MANAGE_LEDGER":
                 reader.readManageLedger(bytes);
                 break;
-            case CURSOR:
+            case "CURSOR":
                 reader.readCursor(bytes);
+                break;
+            case "LEDGER":
+                reader.readLedger(Long.parseLong(System.getProperty("ledger.id")), bytes);
                 break;
             default:
                 break;
