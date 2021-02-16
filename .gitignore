@@ -27,3 +27,6 @@ benchmark/**
 # file system
 .DS_Store
 
+# PersonalClass
+Personal**
+
