@@ -40,6 +40,7 @@ public class AgentMain {
                 //你想切面的包名
                 .type(ElementMatchers.nameStartsWith("com.github.shoothzj.demo.agent.test.")
                 .or(ElementMatchers.named("org.apache.zookeeper.server.PrepRequestProcessor")))
+                .or(ElementMatchers.named("org.apache.pulsar.broker.service.ServerCnx"))
                 .transform(new AgentTransformer())
                 .with(AgentBuilder.RedefinitionStrategy.RETRANSFORMATION)
                 .installOn(inst);

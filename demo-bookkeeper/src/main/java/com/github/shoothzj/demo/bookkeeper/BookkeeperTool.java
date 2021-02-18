@@ -14,7 +14,7 @@ public class BookkeeperTool {
 
     public static final String ENTRY_LOG_PATH = "bk.entry-log.path";
 
-    public static Header readHeader(FileChannel fileChannel) throws Exception {
+    public static LogHeader readHeader(FileChannel fileChannel) throws Exception {
         final ByteBuf headers = Unpooled.buffer(Constant.HEADER_SIZE);
         final int read = fileChannel.read(headers.internalNioBuffer(0, 1024));
         headers.writerIndex(read);
@@ -27,7 +27,7 @@ public class BookkeeperTool {
         int ledgersCount = headers.readInt();
         log.info("map offset is [{}]", ledgersMapOffset);
         log.info("ledgers count is [{}]", ledgersCount);
-        return new Header(headerVersion, ledgersMapOffset, ledgersCount);
+        return new LogHeader(headerVersion, ledgersMapOffset, ledgersCount);
     }
 
 }

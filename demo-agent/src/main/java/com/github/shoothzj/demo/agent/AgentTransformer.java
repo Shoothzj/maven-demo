@@ -1,5 +1,6 @@
 package com.github.shoothzj.demo.agent;
 
+import com.github.shoothzj.demo.agent.interceptor.PulsarServerCnxInterceptor;
 import com.github.shoothzj.demo.agent.interceptor.RestControllerInterceptor;
 import com.github.shoothzj.demo.agent.interceptor.ZooKeeperWriteInterceptor;
 import net.bytebuddy.agent.builder.AgentBuilder;
@@ -42,6 +43,11 @@ public class AgentTransformer implements AgentBuilder.Transformer {
                 final Advice advice = Advice.to(ZooKeeperWriteInterceptor.class);
                 return builder.visit(advice
                         .on(ElementMatchers.named("pRequest2Txn")));
+            }
+            if (typeDescription.getTypeName().equals("org.apache.pulsar.broker.service.ServerCnx")) {
+                final Advice advice = Advice.to(PulsarServerCnxInterceptor.class);
+                return builder.visit(advice
+                        .on(ElementMatchers.named("handleSubscribe")));
             }
         } catch (Exception e) {
             log.error("error is ", e);

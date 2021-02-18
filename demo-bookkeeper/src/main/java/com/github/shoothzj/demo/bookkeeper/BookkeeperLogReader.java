@@ -20,7 +20,7 @@ public class BookkeeperLogReader {
         final RandomAccessFile randomAccessFile = new RandomAccessFile(fileName, "r");
         final FileChannel fileChannel = randomAccessFile.getChannel();
 
-        final Header header = readHeader(fileChannel);
+        final LogHeader header = readHeader(fileChannel);
         //ledger map 放在文件的最后，读取
         long offset = header.ledgersMapOffset;
 
@@ -84,7 +84,7 @@ public class BookkeeperLogReader {
         return ledgersMapSize;
     }
 
-    private Header readHeader(FileChannel fileChannel) throws Exception {
+    private LogHeader readHeader(FileChannel fileChannel) throws Exception {
         final ByteBuf headers = Unpooled.buffer(1024);
         final int read = fileChannel.read(headers.internalNioBuffer(0, 1024));
         headers.writerIndex(read);
@@ -97,7 +97,7 @@ public class BookkeeperLogReader {
         int ledgersCount = headers.readInt();
         log.info("map offset is [{}]", ledgersMapOffset);
         log.info("ledgers count is [{}]", ledgersCount);
-        return new Header(headerVersion, ledgersMapOffset, ledgersCount);
+        return new LogHeader(headerVersion, ledgersMapOffset, ledgersCount);
     }
 
 }

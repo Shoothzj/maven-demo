@@ -19,7 +19,7 @@ public class BookkeeperLogForceReader {
         final RandomAccessFile randomAccessFile = new RandomAccessFile(fileName, "r");
         final FileChannel fileChannel = randomAccessFile.getChannel();
 
-        final Header header = BookkeeperTool.readHeader(fileChannel);
+        final LogHeader header = BookkeeperTool.readHeader(fileChannel);
 
 //        扫描entry
         {
