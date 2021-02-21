@@ -14,17 +14,26 @@ import java.nio.charset.StandardCharsets;
 @Slf4j
 public class TimeClientHandler extends ChannelInboundHandlerAdapter {
 
-    private final ByteBuf firstMessage;
+    private int sendCount;
+
+    private byte[] req;
 
     public TimeClientHandler() {
-        byte[] req = "QUERY TIME ORDER".getBytes(StandardCharsets.UTF_8);
-        firstMessage = Unpooled.buffer(req.length);
-        firstMessage.writeBytes(req);
+        this(1);
+    }
+
+    public TimeClientHandler(int sendCount) {
+        this.sendCount = sendCount;
+        this.req = "QUERY TIME ORDER".getBytes(StandardCharsets.UTF_8);
     }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        ctx.writeAndFlush(firstMessage);
+        for (int i = 0; i < sendCount; i++) {
+            ByteBuf message = Unpooled.buffer(req.length);
+            message.writeBytes(req);
+            ctx.writeAndFlush(message);
+        }
     }
 
     @Override

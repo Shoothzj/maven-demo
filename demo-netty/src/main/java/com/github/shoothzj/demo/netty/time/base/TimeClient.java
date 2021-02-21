@@ -17,10 +17,10 @@ public class TimeClient {
 
     public static void main(String[] args) throws Exception {
         final TimeClient timeClient = new TimeClient();
-        timeClient.connect("127.0.0.1", 8080);
+        timeClient.connect("127.0.0.1", 8080, 100);
     }
 
-    public void connect(String host, int port) throws Exception {
+    public void connect(String host, int port, int sendCount) throws Exception {
         final NioEventLoopGroup group = new NioEventLoopGroup();
         try {
             final Bootstrap b = new Bootstrap();
@@ -29,7 +29,7 @@ public class TimeClient {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            socketChannel.pipeline().addLast(new TimeClientHandler());
+                            socketChannel.pipeline().addLast(new TimeClientHandler(sendCount));
                         }
                     });
             // connect
