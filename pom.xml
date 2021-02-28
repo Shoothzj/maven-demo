@@ -49,6 +49,8 @@
         <module>demo-http</module>
         <module>demo-antlr</module>
         <module>demo-basic</module>
+        <module>demo-log4j2</module>
+        <module>demo-cassandra</module>
     </modules>
 
     <properties>
