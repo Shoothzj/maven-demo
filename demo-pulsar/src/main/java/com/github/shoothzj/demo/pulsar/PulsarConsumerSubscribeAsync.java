@@ -10,13 +10,15 @@ import org.apache.pulsar.client.api.MessageListener;
 import org.apache.pulsar.client.api.PulsarClient;
 
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 /**
  * @author hezhangjian
  */
 @Slf4j
-public class PulsarConsumer {
+public class PulsarConsumerSubscribeAsync {
 
     public static void main(String[] args) throws Exception {
         LogUtil.configureLog();
@@ -31,18 +33,23 @@ public class PulsarConsumer {
                 .serviceUrl("http://127.0.0.1:8080")
                 .build();
         final ConsumerBuilder<byte[]> consumerBuilder = pulsarClient.newConsumer();
-        Consumer<byte[]> consumer = null;
         try {
-            consumer = consumerBuilder.topic(topic).subscriptionName(UUID.randomUUID().toString()).messageListener(new MessageListener<byte[]>() {
+            final CompletableFuture<Consumer<byte[]>> completableFuture = consumerBuilder.topic(topic).subscriptionName(UUID.randomUUID().toString()).messageListener(new MessageListener<byte[]>() {
                 @Override
                 public void received(Consumer<byte[]> consumer, Message<byte[]> message) {
                     log.info("message is [{}]", message);
                 }
-            }).subscribe();
+            }).subscribeAsync();
+            completableFuture.exceptionally(new Function<Throwable, Consumer<byte[]>>() {
+                @Override
+                public Consumer<byte[]> apply(Throwable throwable) {
+                    log.error("exception is ", throwable);
+                    return null;
+                }
+            });
         } catch (Throwable e) {
             log.error("exception ", e);
         }
-        Consumer<byte[]> finalConsumer = consumer;
         new Thread(() -> {
             while (true) {
                 CommonUtil.sleep(TimeUnit.SECONDS, 5);

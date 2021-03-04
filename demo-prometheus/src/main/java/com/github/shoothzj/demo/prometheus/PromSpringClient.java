@@ -11,10 +11,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Slf4j
 @EnableScheduling
 @SpringBootApplication
-public class PromMain {
+public class PromSpringClient {
 
     public static void main(String[] args) {
-        SpringApplication.run(PromMain.class);
+        SpringApplication.run(PromSpringClient.class);
     }
 
 }

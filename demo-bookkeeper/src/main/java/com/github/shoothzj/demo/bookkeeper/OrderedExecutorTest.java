@@ -19,6 +19,7 @@ public class OrderedExecutorTest {
         final OrderedExecutor orderedExecutor = OrderedExecutor.newBuilder()
                 .numThreads(1)
                 .traceTaskExecution(true)
+                .traceTaskWarnTimeMicroSec(1)
                 .name("bookkeeper-ml-workers")
                 .build();
         log.info("start");
@@ -27,7 +28,7 @@ public class OrderedExecutorTest {
                 @Override
                 public void safeRun() {
                     log.info("run run run");
-                    CommonUtil.sleep(TimeUnit.SECONDS, 10);
+                    CommonUtil.sleep(TimeUnit.SECONDS, 2);
                 }
             });
         }
