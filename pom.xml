@@ -52,6 +52,7 @@
         <module>demo-log4j2</module>
         <module>demo-cassandra</module>
         <module>demo-configservice</module>
+        <module>demo-springboot-mongo</module>
     </modules>
 
     <properties>
