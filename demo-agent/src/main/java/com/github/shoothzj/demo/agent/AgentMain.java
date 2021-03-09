@@ -41,6 +41,7 @@ public class AgentMain {
                 .type(ElementMatchers.nameStartsWith("com.github.shoothzj.demo.agent.test.")
                 .or(ElementMatchers.named("org.apache.zookeeper.server.PrepRequestProcessor")))
                 .or(ElementMatchers.named("org.apache.pulsar.broker.service.ServerCnx"))
+                .or(ElementMatchers.named("java.lang.Thread"))
                 .transform(new AgentTransformer())
                 .with(AgentBuilder.RedefinitionStrategy.RETRANSFORMATION)
                 .installOn(inst);
