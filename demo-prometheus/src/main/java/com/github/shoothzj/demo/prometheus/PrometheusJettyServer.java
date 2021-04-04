@@ -27,7 +27,9 @@ public class PrometheusJettyServer {
         server.setConnectors(new Connector[]{connector});
         final ServletHandler servletHandler = new ServletHandler();
         final ServletHolder promServletHolder = new ServletHolder(new PrometheusServlet(new PrometheusMetricsProvider()));
+        final ServletHolder customServletHolder = new ServletHolder(new CustomMetricsServletImpl());
         servletHandler.addServletWithMapping(promServletHolder, "/metrics");
+        servletHandler.addServletWithMapping(customServletHolder, "/custom");
         server.setHandler(servletHandler);
         server.start();
     }

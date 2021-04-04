@@ -53,6 +53,9 @@
         <module>demo-cassandra</module>
         <module>demo-configservice</module>
         <module>demo-springboot-mongo</module>
+        <module>demo-lucene</module>
+        <module>demo-etcd</module>
+        <module>demo-zookeeper-server-metric</module>
     </modules>
 
     <properties>
