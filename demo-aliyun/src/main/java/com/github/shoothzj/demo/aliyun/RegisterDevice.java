@@ -8,14 +8,11 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
-/*
-pom.xml
-<dependency>
-  <groupId>com.aliyun</groupId>
-  <artifactId>aliyun-java-sdk-core</artifactId>
-  <version>4.5.3</version>
-</dependency>
-*/
+
+/**
+ * 注册设备
+ * @author hezhangjian
+ */
 public class RegisterDevice {
     public static void main(String[] args) {
         DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "<accessKeyId>", "<accessSecret>");
