@@ -57,6 +57,7 @@
         <module>demo-etcd</module>
         <module>demo-zookeeper-server-metric</module>
         <module>demo-beam</module>
+        <module>demo-skywalking</module>
     </modules>
 
     <properties>

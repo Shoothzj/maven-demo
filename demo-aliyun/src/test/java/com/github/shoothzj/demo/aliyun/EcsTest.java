@@ -17,10 +17,23 @@ import java.util.List;
 public class EcsTest {
 
     @Test
+    public void createEcsInstance() throws Exception {
+        EcsService.createEcsList();
+    }
+
+    @Test
+    public void createLowEcs() throws Exception {
+        EcsService.createLowEcs();
+    }
+
+    @Test
     public void describeInstance() throws Exception {
         final List<DescribeInstancesResponse.Instance> ecsList = EcsService.getEcsList();
         for (DescribeInstancesResponse.Instance instance : ecsList) {
+            log.info("==========");
             log.info("instance is [{}]", instance);
+            log.info("instance id is [{}]", instance.getInstanceId());
+            log.info("instance id is [{}]", instance.getLocalStorageAmount());
         }
     }
 

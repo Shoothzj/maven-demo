@@ -1,5 +1,8 @@
 package com.github.shoothzj.demo.aliyun;
 
+import com.aliyuncs.ecs.model.v20140526.CreateInstanceRequest;
+import com.aliyuncs.slb.model.v20140515.CreateLoadBalancerRequest;
+import com.aliyuncs.slb.model.v20140515.CreateLoadBalancerResponse;
 import com.aliyuncs.slb.model.v20140515.DeleteLoadBalancerRequest;
 import com.aliyuncs.slb.model.v20140515.DeleteLoadBalancerResponse;
 import com.aliyuncs.slb.model.v20140515.DescribeLoadBalancersRequest;
@@ -14,6 +17,13 @@ import java.util.List;
  */
 @Slf4j
 public class ClbService {
+
+    @SneakyThrows
+    public static void createClb() {
+        final CreateLoadBalancerRequest createLoadBalancerRequest = new CreateLoadBalancerRequest();
+        final CreateLoadBalancerResponse loadBalancerResponse = AliService.client.getAcsResponse(createLoadBalancerRequest);
+        log.info("[{}]", loadBalancerResponse);
+    }
 
     @SneakyThrows
     public static List<DescribeLoadBalancersResponse.LoadBalancer> getClb() {

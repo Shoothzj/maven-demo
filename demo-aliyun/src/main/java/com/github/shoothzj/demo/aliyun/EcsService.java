@@ -1,12 +1,10 @@
 package com.github.shoothzj.demo.aliyun;
 
-import com.aliyuncs.DefaultAcsClient;
-import com.aliyuncs.IAcsClient;
+import com.aliyuncs.ecs.model.v20140526.CreateInstanceRequest;
 import com.aliyuncs.ecs.model.v20140526.DeleteInstanceRequest;
 import com.aliyuncs.ecs.model.v20140526.DeleteInstanceResponse;
 import com.aliyuncs.ecs.model.v20140526.DescribeInstancesRequest;
 import com.aliyuncs.ecs.model.v20140526.DescribeInstancesResponse;
-import com.aliyuncs.profile.DefaultProfile;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 
@@ -17,6 +15,30 @@ import java.util.List;
  */
 @Slf4j
 public class EcsService {
+
+    @SneakyThrows
+    public static void createEcsList() {
+        final CreateInstanceRequest createInstanceRequest = new CreateInstanceRequest();
+        createInstanceRequest.setImageId("ubuntu_20_04_x64_20G_alibase_20210318.vhd");
+        createInstanceRequest.setZoneId("cn-hongkong-b");
+        createInstanceRequest.setInstanceType("ecs.g6e.xlarge");
+        createInstanceRequest.setSystemDiskCategory("cloud_ssd");
+        createInstanceRequest.setInstanceChargeType("PostPaid");
+        createInstanceRequest.setInternetChargeType("PayByTraffic");
+        AliService.client.getAcsResponse(createInstanceRequest);
+    }
+
+    @SneakyThrows
+    public static void createLowEcs() {
+        final CreateInstanceRequest createInstanceRequest = new CreateInstanceRequest();
+        createInstanceRequest.setImageId("ubuntu_20_04_x64_20G_alibase_20210318.vhd");
+        createInstanceRequest.setZoneId("cn-hongkong-b");
+        createInstanceRequest.setInstanceType("ecs.g6e.large");
+        createInstanceRequest.setSystemDiskCategory("");
+        createInstanceRequest.setInstanceChargeType("PostPaid");
+        createInstanceRequest.setInternetChargeType("PayByTraffic");
+        AliService.client.getAcsResponse(createInstanceRequest);
+    }
 
     @SneakyThrows
     public static List<DescribeInstancesResponse.Instance> getEcsList() {
