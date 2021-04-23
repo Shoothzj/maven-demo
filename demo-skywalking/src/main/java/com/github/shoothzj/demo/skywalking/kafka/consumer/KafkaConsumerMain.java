@@ -51,7 +51,11 @@ public class KafkaConsumerMain {
                 final Headers headers = consumerRecord.headers();
                 {
                     final Header lastHeader = headers.lastHeader("sw8");
-                    SkyWalking8Util.parseSw(lastHeader.value());
+                    try {
+                        SkyWalking8Util.parseSw(lastHeader.value());
+                    } catch (Exception e) {
+                        log.error("exception data is {} ex {}", lastHeader, e);
+                    }
                 }
                 {
                     final Header lastHeader = headers.lastHeader("sw8-x");

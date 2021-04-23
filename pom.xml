@@ -58,6 +58,7 @@
         <module>demo-zookeeper-server-metric</module>
         <module>demo-beam</module>
         <module>demo-skywalking</module>
+        <module>demo-graphql</module>
     </modules>
 
     <properties>
