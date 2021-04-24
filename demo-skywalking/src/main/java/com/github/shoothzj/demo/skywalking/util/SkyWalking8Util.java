@@ -1,5 +1,6 @@
 package com.github.shoothzj.demo.skywalking.util;
 
+import com.github.shoothzj.demo.skywalking.module.Sw8Module;
 import com.github.shoothzj.demo.skywalking.util.protocol.SkyWalking8Sw;
 import com.github.shoothzj.demo.skywalking.util.protocol.SkyWalking8Swx;
 import lombok.extern.slf4j.Slf4j;
@@ -10,15 +11,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SkyWalking8Util {
 
-    public static void parseSw(byte[] value) {
+    public static Sw8Module parseSw(byte[] value) {
         String result = new String(value);
         final String[] split = result.split("-");
-        SkyWalking8Sw.parseProtocol(split);
+        return SkyWalking8Sw.parseProtocol(split);
     }
 
-    public static void parseSw(String value) {
+    public static Sw8Module parseSw(String value) {
         final String[] split = value.split("-");
-        SkyWalking8Sw.parseProtocol(split);
+        return SkyWalking8Sw.parseProtocol(split);
     }
 
     public static void parseSwX(byte[] value) {

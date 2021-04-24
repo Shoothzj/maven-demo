@@ -19,6 +19,31 @@
 ```
 -javaagent:/Users/akka/ShootHzj/skywalking/sw850/agent/skywalking-agent.jar -Dskywalking_config=/Users/akka/master/maven-demo/demo-skywalking/src/main/resources/kafka/consumer/agent.config -DSW_LOGGING_DIR=/Users/akka/master/maven-demo/demo-skywalking
 ```
+## WindowsAgent
+### http
+```
+-javaagent:D:\ShootHzj\skywalking\sw850\agent\skywalking-agent.jar -Dskywalking_config=D:\master\maven-demo\demo-skywalking\src\main\resources\http\agent.config -DSW_LOGGING_DIR=D:\master\maven-demo\demo-skywalking
+```
+### pulsar producer
+```
+-javaagent:D:\ShootHzj\skywalking\sw850\agent\skywalking-agent.jar -Dskywalking_config=D:\master\maven-demo\demo-skywalking\src\main\resources\pulsar\producer\agent.config -DSW_LOGGING_DIR=D:\master\maven-demo\demo-skywalking
+```
+### pulsar consumer
+```
+-javaagent:D:\ShootHzj\skywalking\sw850\agent\skywalking-agent.jar -Dskywalking_config=D:\master\maven-demo\demo-skywalking\src\main\resources\pulsar\consumer\agent.config -DSW_LOGGING_DIR=D:\master\maven-demo\demo-skywalking
+```
+### kafka producer
+```
+-javaagent:D:\ShootHzj\skywalking\sw850\agent\skywalking-agent.jar -Dskywalking_config=D:\master\maven-demo\demo-skywalking\src\main\resources\kafka\producer\agent.config -DSW_LOGGING_DIR=D:\master\maven-demo\demo-skywalking
+```
+### kafka consumer
+```
+-javaagent:D:\ShootHzj\skywalking\sw850\agent\skywalking-agent.jar -Dskywalking_config=D:\master\maven-demo\demo-skywalking\src\main\resources\kafka\consumer\agent.config -DSW_LOGGING_DIR=D:\master\maven-demo\demo-skywalking
+```
+### integrate pckp
+```
+-javaagent:D:\ShootHzj\skywalking\sw850\agent\skywalking-agent.jar -Dskywalking_config=D:\master\maven-demo\demo-skywalking\src\main\resources\integrate\pckp\agent.config -DSW_LOGGING_DIR=D:\master\maven-demo\demo-skywalking
+```
 
 ## command
 ### HTTP

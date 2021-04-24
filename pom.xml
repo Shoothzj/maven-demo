@@ -59,6 +59,8 @@
         <module>demo-beam</module>
         <module>demo-skywalking</module>
         <module>demo-graphql</module>
+        <module>demo-elasticsearch</module>
+        <module>demo-kafka</module>
     </modules>
 
     <properties>
