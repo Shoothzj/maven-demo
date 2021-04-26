@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AliService {
 
-    public static final Ali ali = AkSkReader.getAli();
+    public static final Ali ali = AliConfigReader.getAli();
 
     public static final DefaultProfile profile = DefaultProfile.getProfile(ali.getRegion(), ali.getAk(), ali.getSk());
 

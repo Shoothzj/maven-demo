@@ -22,6 +22,11 @@ public class EcsTest {
     }
 
     @Test
+    public void runKubernetesCluster() throws Exception {
+        EcsService.runEcsList();
+    }
+
+    @Test
     public void createLowEcs() throws Exception {
         EcsService.createLowEcs();
     }

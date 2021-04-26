@@ -7,11 +7,11 @@ import org.junit.Test;
  * @author hezhangjian
  */
 @Slf4j
-public class AkSkReaderTest {
+public class AliConfigReaderTest {
 
     @Test
     public void testGetAli() {
-        final Ali ali = AkSkReader.getAli();
+        final Ali ali = AliConfigReader.getAli();
         log.info("ali is [{}]", ali);
     }
 

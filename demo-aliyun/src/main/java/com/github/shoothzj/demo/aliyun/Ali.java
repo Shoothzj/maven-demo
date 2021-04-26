@@ -14,6 +14,12 @@ public class Ali {
 
     private String sk;
 
+    private String ecsPassword;
+
+    private String switchId;
+
+    private String sgId;
+
     public Ali() {
     }
 

@@ -6,6 +6,8 @@ import org.apache.bookkeeper.client.LedgerEntry;
 import org.apache.bookkeeper.client.LedgerHandle;
 
 import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -17,13 +19,13 @@ public class BookKeeperExample {
 
     private static long ledgerId;
 
-    private static byte[] ledgerPassword;
+    private static byte[] ledgerPassword = "".getBytes(StandardCharsets.UTF_8);
 
-    private static List<byte[]> entries;
+    private static List<byte[]> entries = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
         BookKeeper bkc = new BookKeeper("localhost:2181");
-        LedgerHandle lh = bkc.createLedger(3, 3, 2, BookKeeper.DigestType.CRC32, ledgerPassword);
+        LedgerHandle lh = bkc.createLedger(1, 1, 1, BookKeeper.DigestType.CRC32, ledgerPassword);
         ledgerId = lh.getId();
         ByteBuffer entry = ByteBuffer.allocate(4);
 

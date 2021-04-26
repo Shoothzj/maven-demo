@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
  * @author hezhangjian
  */
 @Slf4j
-public class AkSkReader {
+public class AliConfigReader {
 
     @SneakyThrows
     public static Ali getAli() {
@@ -24,6 +24,9 @@ public class AkSkReader {
         ali.setAk(load.get("ak"));
         ali.setSk(load.get("sk"));
         ali.setRegion("cn-hongkong");
+        ali.setEcsPassword(load.get("ecsPassword"));
+        ali.setSwitchId(load.get("switchId"));
+        ali.setSgId(load.get("sgId"));
         return ali;
     }
 
