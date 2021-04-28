@@ -32,8 +32,9 @@ public class EcsService {
     @SneakyThrows
     public static void runEcsList() {
         final RunInstancesRequest runInstancesRequest = new RunInstancesRequest();
-        //vpc
+        //network
         runInstancesRequest.setSecurityGroupId("sg-j6c4i2wnjsyb2vmy8mza");
+        runInstancesRequest.setVSwitchId(AliService.ali.getSwitchId());
 
         runInstancesRequest.setZoneId("cn-hongkong-b");
         runInstancesRequest.setImageId("ubuntu_20_04_x64_20G_alibase_20210318.vhd");

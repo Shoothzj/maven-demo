@@ -61,6 +61,8 @@
         <module>demo-graphql</module>
         <module>demo-elasticsearch</module>
         <module>demo-kafka</module>
+        <module>demo-hadoop</module>
+        <module>demo-mysql</module>
     </modules>
 
     <properties>
@@ -79,6 +81,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>
