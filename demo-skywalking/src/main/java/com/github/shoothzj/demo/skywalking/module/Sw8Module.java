@@ -14,7 +14,7 @@ public class Sw8Module {
 
     private String traceSegmentId;
 
-    private String parentSpanId;
+    private int parentSpanId;
 
     private String parentService;
 

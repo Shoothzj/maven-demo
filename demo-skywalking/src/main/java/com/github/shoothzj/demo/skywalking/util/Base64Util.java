@@ -16,4 +16,8 @@ public class Base64Util {
         return new String(base64.decode(str));
     }
 
+    public static byte[] decode2Bytes(String str) {
+        return base64.decode(str);
+    }
+
 }

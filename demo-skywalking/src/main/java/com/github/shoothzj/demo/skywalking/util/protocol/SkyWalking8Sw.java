@@ -67,9 +67,9 @@ public class SkyWalking8Sw {
      * @param str
      * @return
      */
-    public static String parsePartTraceParentSpanId(String str) {
-        log.debug("parent span id {}", Base64Util.decode(str));
-        return str;
+    public static int parsePartTraceParentSpanId(String str) {
+        log.debug("parent span id {}", str);
+        return Integer.parseInt(str);
     }
 
     /**
