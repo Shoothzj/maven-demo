@@ -63,6 +63,9 @@
         <module>demo-kafka</module>
         <module>demo-hadoop</module>
         <module>demo-mysql</module>
+        <module>demo-jooq</module>
+        <module>demo-a</module>
+        <module>demo-jcommander</module>
     </modules>
 
     <properties>

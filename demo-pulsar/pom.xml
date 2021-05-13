@@ -28,6 +28,11 @@
             <artifactId>pulsar-client-admin</artifactId>
             <version>2.7.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.pulsar</groupId>
+            <artifactId>pulsar-functions-api</artifactId>
+            <version>2.7.0</version>
+        </dependency>
     </dependencies>
 
 </project>

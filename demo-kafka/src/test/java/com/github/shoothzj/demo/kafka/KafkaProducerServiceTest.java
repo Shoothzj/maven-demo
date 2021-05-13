@@ -1,9 +1,12 @@
 package com.github.shoothzj.demo.kafka;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class KafkaProducerServiceTest {
 
+    @Test
+    public void testKafkaSend() {
 
+    }
 
 }

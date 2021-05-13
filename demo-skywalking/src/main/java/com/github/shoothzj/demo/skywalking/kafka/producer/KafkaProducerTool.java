@@ -9,6 +9,9 @@ import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
 
+/**
+ * @author akka
+ */
 public class KafkaProducerTool {
 
     public static Producer<String, byte[]> createProducer() {
