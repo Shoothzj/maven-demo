@@ -18,6 +18,8 @@ public class Ali {
 
     private String switchId;
 
+    private String routerId;
+
     private String sgId;
 
     public Ali() {

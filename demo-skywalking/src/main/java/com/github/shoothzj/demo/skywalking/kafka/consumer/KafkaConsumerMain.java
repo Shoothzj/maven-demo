@@ -1,6 +1,6 @@
 package com.github.shoothzj.demo.skywalking.kafka.consumer;
 
-import com.github.shoothzj.demo.skywalking.kafka.KafkaConst;
+import com.github.shoothzj.demo.kafka.KafkaConst;
 import com.github.shoothzj.demo.skywalking.util.SkyWalking8Util;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -26,16 +26,16 @@ public class KafkaConsumerMain {
 
     public static Consumer<Long, String> createConsumer() {
         Properties props = new Properties();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConst.KAFKA_BROKERS);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, KafkaConst.GROUP_ID_CONFIG);
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConst.BROKERS);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "consumerGroup1");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongDeserializer.class.getName());
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, KafkaConst.MAX_POLL_RECORDS);
+        props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 1);
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, KafkaConst.OFFSET_RESET_EARLIER);
 
         Consumer<Long, String> consumer = new KafkaConsumer<>(props);
-        consumer.subscribe(Collections.singletonList(KafkaConst.TOPIC_NAME));
+        consumer.subscribe(Collections.singletonList(KafkaConst.DEMO_TOPIC));
         return consumer;
     }
 

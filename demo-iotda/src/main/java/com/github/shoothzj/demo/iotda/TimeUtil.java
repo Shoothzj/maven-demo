@@ -1,7 +1,6 @@
-package com.github.shoothzj.demo.basic;
+package com.github.shoothzj.demo.iotda;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 
 import java.time.Instant;
 import java.time.ZoneId;
@@ -12,19 +11,17 @@ import java.time.format.DateTimeFormatter;
  * @author hezhangjian
  */
 @Slf4j
-public class TimeTest {
+public class TimeUtil {
 
-    @Test
-    public void nanoTimeTest() {
-        final long nanoTime = System.nanoTime();
-        log.info("nano time is {}", nanoTime);
-    }
-
-    @Test
-    public void testTimestamp() {
+    /***
+     * 要求：10位数字
+     *
+     * @return
+     */
+    public static String getTimeStamp() {
         String timeStamp = ZonedDateTime.ofInstant(Instant.now(), ZoneId.of("UTC"))
                 .format(DateTimeFormatter.ofPattern("yyyyMMddHH"));
-        log.info("ts is {}", timeStamp);
+        return timeStamp;
     }
 
 }

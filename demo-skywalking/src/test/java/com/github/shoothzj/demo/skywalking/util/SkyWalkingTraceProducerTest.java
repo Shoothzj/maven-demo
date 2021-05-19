@@ -1,7 +1,7 @@
 package com.github.shoothzj.demo.skywalking.util;
 
+import com.github.shoothzj.demo.kafka.KafkaProducerFactory;
 import com.github.shoothzj.demo.skywalking.SkyWalkingConst;
-import com.github.shoothzj.demo.skywalking.kafka.producer.KafkaProducerTool;
 import com.github.shoothzj.javatool.util.CommonUtil;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -20,7 +20,7 @@ public class SkyWalkingTraceProducerTest {
     public void produce() {
         String instanceId = "xxxxxxxxxx@172.16.2.2";
         String service = "Ghuow";
-        Producer<String, byte[]> producer = KafkaProducerTool.createProducer();
+        Producer<String, byte[]> producer = KafkaProducerFactory.createByteProducer("clientId1");
         while (true) {
             String traceId = GlobalIdGenerator.generate();
             String traceSegmentId = GlobalIdGenerator.generate();

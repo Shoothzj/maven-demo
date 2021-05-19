@@ -64,8 +64,12 @@
         <module>demo-hadoop</module>
         <module>demo-mysql</module>
         <module>demo-jooq</module>
-        <module>demo-a</module>
+        <module>demo-integrate</module>
         <module>demo-jcommander</module>
+        <module>demo-iotda</module>
+        <module>demo-hc</module>
+        <module>demo-mybatis</module>
+        <module>demo-module</module>
     </modules>
 
     <properties>
