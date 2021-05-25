@@ -12,8 +12,6 @@ import java.io.File;
 @Slf4j
 public class PcapUtil {
 
-    public static final String TCP_TIMESTAMP = "tcp_timestamp";
-
     public static String getPcapDirectory() {
         final OperationSystem operationSystem = OSUtil.getOS();
         if (operationSystem.equals(OperationSystem.MAC)) {

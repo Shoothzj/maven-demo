@@ -3,11 +3,11 @@ package com.github.shoothzj.jpcap.print;
 /**
  * @author hezhangjian
  */
-public enum TcpPrintEnum {
+public enum PcapEnum {
 
     /**
-     * tcp原始内容
+     * 数据包到达时间
      */
-    TCP_RAW_CONTENT,
+    ARRIVAL_TIME,
 
 }
