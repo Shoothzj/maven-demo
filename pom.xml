@@ -70,6 +70,7 @@
         <module>demo-hc</module>
         <module>demo-mybatis</module>
         <module>demo-module</module>
+        <module>demo-jdbc</module>
     </modules>
 
     <properties>
