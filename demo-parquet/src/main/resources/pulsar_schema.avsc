@@ -1,0 +1,15 @@
+{
+  "type": "record",
+  "name": "PulsarInstance",
+  "namespace": "com.github.shoothzj.demo.avro",
+  "fields": [
+    {
+      "name": "cluster",
+      "type": "string"
+    },
+    {
+      "name": "url",
+      "type": "string"
+    }
+  ]
+}

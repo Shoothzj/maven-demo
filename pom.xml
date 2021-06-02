@@ -71,6 +71,11 @@
         <module>demo-mybatis</module>
         <module>demo-module</module>
         <module>demo-jdbc</module>
+        <module>demo-parquet</module>
+        <module>demo-avro</module>
+        <module>component-module</module>
+        <module>component-avro</module>
+        <module>component-util</module>
     </modules>
 
     <properties>
