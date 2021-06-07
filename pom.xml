@@ -76,6 +76,7 @@
         <module>component-module</module>
         <module>component-avro</module>
         <module>component-util</module>
+        <module>component-mysql</module>
     </modules>
 
     <properties>

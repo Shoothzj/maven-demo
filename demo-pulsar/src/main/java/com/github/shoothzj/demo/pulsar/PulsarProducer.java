@@ -24,21 +24,22 @@ import java.util.function.Function;
 public class PulsarProducer {
 
     public static void main(String[] args) throws Exception {
-        String topic = "test" + UUID.randomUUID().toString();
+        String topic = "test";
         System.out.println(String.format("topic is %s", topic));
         PulsarClient pulsarClient = PulsarClient.builder()
                 .serviceUrl("http://127.0.0.1:8080")
                 .build();
-        ProducerBuilder<String> producerBuilder = pulsarClient.newProducer(Schema.STRING).enableBatching(false);
+        ProducerBuilder<String> producerBuilder = pulsarClient.newProducer(Schema.STRING).enableBatching(true);
         Producer<String> producer = producerBuilder.topic(topic).create();
-        final TypedMessageBuilder<String> stringTypedMessageBuilder = producer.newMessage();
-        final HashMap<String, String> map = new HashMap<>();
-        map.put("1", "2");
-        final TypedMessageBuilder<String> value = stringTypedMessageBuilder.key("1").value("2").properties(map);
+
         final ExecutorService fixedThreadPool = Executors.newFixedThreadPool(5);
         for (int i = 0; i < 5; i++) {
             fixedThreadPool.execute(()-> {
                 while (true) {
+                    final TypedMessageBuilder<String> stringTypedMessageBuilder = producer.newMessage();
+                    final HashMap<String, String> map = new HashMap<>();
+                    map.put("1", "2");
+                    final TypedMessageBuilder<String> value = stringTypedMessageBuilder.key("1").value("2").properties(map);
                     final CompletableFuture<MessageId> completableFuture = value.sendAsync();
                     completableFuture.exceptionally(new Function<Throwable, MessageId>() {
                         @Override
