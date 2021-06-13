@@ -1,7 +1,7 @@
 package com.github.shoothzj.jpcap.util;
 
 import com.github.shoothzj.javatool.module.OperationSystem;
-import com.github.shoothzj.javatool.util.OSUtil;
+import com.github.shoothzj.javatool.util.OsUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
@@ -13,7 +13,7 @@ import java.io.File;
 public class PcapUtil {
 
     public static String getPcapDirectory() {
-        final OperationSystem operationSystem = OSUtil.getOS();
+        final OperationSystem operationSystem = OsUtil.getOs();
         if (operationSystem.equals(OperationSystem.MAC)) {
             return "/Users/akka/OneDrive/pcap_capture";
         } else if (operationSystem.equals(OperationSystem.WINDOWS)) {

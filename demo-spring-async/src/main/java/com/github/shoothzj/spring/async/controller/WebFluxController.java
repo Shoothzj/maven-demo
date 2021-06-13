@@ -25,9 +25,6 @@ public class WebFluxController {
     }
 
     /**
-     * Flux<String> flux = Flux.just("A", "B", "C");
-     * Flux<String> flux = Flux.fromArray(new String[]{"A", "B", "C"});
-     * Flux<String> flux = Flux.fromIterable(Arrays.asList("A", "B", "C"));
      * @return
      */
     public Flux<String> getAll() {

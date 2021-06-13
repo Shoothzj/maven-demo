@@ -1,6 +1,5 @@
 package com.github.shoothzj.demo.bookkeeper;
 
-import com.github.shoothzj.sdk.bookkeeper.util.BkCodecUtil;
 import com.google.protobuf.InvalidProtocolBufferException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.bookkeeper.proto.BookkeeperProtocol;

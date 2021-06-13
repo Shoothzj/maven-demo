@@ -77,6 +77,7 @@
         <module>component-avro</module>
         <module>component-util</module>
         <module>component-mysql</module>
+        <module>demo-trino</module>
     </modules>
 
     <properties>
@@ -87,7 +88,7 @@
     <parent>
         <artifactId>java-dependency</artifactId>
         <groupId>com.github.shoothzj</groupId>
-        <version>3.0.10.RELEASE</version>
+        <version>3.0.13.RELEASE</version>
     </parent>
 
     <build>
@@ -108,7 +109,7 @@
         <dependency>
             <groupId>com.github.shoothzj</groupId>
             <artifactId>java-tool</artifactId>
-            <version>3.0.31.RELEASE</version>
+            <version>3.0.33.RELEASE</version>
         </dependency>
         <!-- log -->
         <dependency>
@@ -119,13 +120,11 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
         </dependency>
     </dependencies>
 
