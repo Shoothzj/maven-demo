@@ -1,7 +1,7 @@
 package com.github.shoothzj.demo.skywalking;
 
 /**
- * @hezhangjian
+ * @author hezhangjian
  */
 public class SkyWalkingConst {
 

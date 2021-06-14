@@ -78,6 +78,7 @@
         <module>component-util</module>
         <module>component-mysql</module>
         <module>demo-trino</module>
+        <module>demo-azure</module>
     </modules>
 
     <properties>
