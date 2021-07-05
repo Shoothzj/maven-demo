@@ -79,6 +79,8 @@
         <module>component-mysql</module>
         <module>demo-trino</module>
         <module>demo-azure</module>
+        <module>demo-flink</module>
+        <module>demo-springboot-cassandra</module>
     </modules>
 
     <properties>
@@ -89,7 +91,7 @@
     <parent>
         <artifactId>java-dependency</artifactId>
         <groupId>com.github.shoothzj</groupId>
-        <version>3.0.13.RELEASE</version>
+        <version>3.0.14.RELEASE</version>
     </parent>
 
     <build>

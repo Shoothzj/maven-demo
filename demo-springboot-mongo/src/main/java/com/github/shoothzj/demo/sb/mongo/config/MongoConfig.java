@@ -1,15 +1,13 @@
 package com.github.shoothzj.demo.sb.mongo.config;
 
+import com.fasterxml.jackson.databind.util.Converter;
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.data.mongodb.MongoDbFactory;
+import org.springframework.data.mongodb.MongoDatabaseFactory;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.convert.DbRefResolver;
@@ -44,10 +42,10 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
     }
 
 
-    @Bean
-    public MongoTemplate mongoTemplate(@Autowired MongoDbFactory mongoDbFactory) throws Exception {
+    @Override
+    public MongoTemplate mongoTemplate(MongoDatabaseFactory databaseFactory, MappingMongoConverter converter) {
         MongoMappingContext mappingContext = new MongoMappingContext();
-        DbRefResolver dbRefResolver = new DefaultDbRefResolver(mongoDbFactory);
+        DbRefResolver dbRefResolver = new DefaultDbRefResolver(databaseFactory);
         MappingMongoConverter mappingMongoConverter = new MappingMongoConverter(dbRefResolver, mappingContext);
 
 
@@ -60,8 +58,6 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 
         mappingMongoConverter.setTypeMapper(new DefaultMongoTypeMapper(null));
 
-        MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory, mappingMongoConverter);
-        return mongoTemplate;
+        return new MongoTemplate(databaseFactory, mappingMongoConverter);
     }
-
 }

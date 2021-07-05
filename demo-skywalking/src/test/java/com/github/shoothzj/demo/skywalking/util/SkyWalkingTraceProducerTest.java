@@ -20,7 +20,7 @@ public class SkyWalkingTraceProducerTest {
     public void produce() {
         String instanceId = "xxxxxxxxxx@172.16.2.2";
         String service = "Ghuow";
-        Producer<String, byte[]> producer = KafkaProducerFactory.createByteProducer("clientId1");
+        Producer<String, byte[]> producer = KafkaProducerFactory.createByteProducer();
         while (true) {
             String traceId = GlobalIdGenerator.generate();
             String traceSegmentId = GlobalIdGenerator.generate();

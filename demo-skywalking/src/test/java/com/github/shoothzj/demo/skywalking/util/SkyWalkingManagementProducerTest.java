@@ -20,7 +20,7 @@ public class SkyWalkingManagementProducerTest {
     public void produce() {
         String instanceId = "xxxxxxxxxx@" + ip;
         String service = "Ghuow";
-        Producer<String, byte[]> producer = KafkaProducerFactory.createByteProducer("clientId1");;
+        Producer<String, byte[]> producer = KafkaProducerFactory.createByteProducer();;
         long aux = 0;
         while (true) {
             if (aux % 5 == 0) {

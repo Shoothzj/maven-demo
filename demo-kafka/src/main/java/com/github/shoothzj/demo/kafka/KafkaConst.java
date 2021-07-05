@@ -16,5 +16,7 @@ public class KafkaConst {
 
     public static String DEMO_TOPIC = "demo";
 
+    public static final String JAAS_CONFIG_FORMAT = "org.apache.kafka.common.security.plain.PlainLoginModule required \nusername=\"%s\" \npassword=\"%s\";";
+
 
 }

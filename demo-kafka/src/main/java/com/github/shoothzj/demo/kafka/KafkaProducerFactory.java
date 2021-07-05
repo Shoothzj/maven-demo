@@ -8,6 +8,7 @@ import org.apache.kafka.common.serialization.ByteArraySerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.util.Properties;
+import java.util.UUID;
 
 /**
  * @author hezhangjian
@@ -15,13 +16,25 @@ import java.util.Properties;
 @Slf4j
 public class KafkaProducerFactory {
 
-    public static Producer<String, byte[]> createByteProducer(String clientId) {
-        Properties props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConst.BROKERS);
-        props.put(ProducerConfig.CLIENT_ID_CONFIG, clientId);
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+    public static Producer<String, String> createStringProducer() {
+        Properties props = constructProperties();
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        return new KafkaProducer<>(props);
+    }
+
+    public static Producer<String, byte[]> createByteProducer() {
+        final Properties props = constructProperties();
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class.getName());
         return new KafkaProducer<>(props);
     }
+
+    private static Properties constructProperties() {
+        Properties props = new Properties();
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConst.BROKERS);
+        props.put(ProducerConfig.CLIENT_ID_CONFIG, UUID.randomUUID().toString());
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        return props;
+    }
+
 
 }
